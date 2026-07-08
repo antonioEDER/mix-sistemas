@@ -1,0 +1,23 @@
+version: '3.4'
+
+networks:
+  proxy:
+    external:
+      name: proxy
+
+services:
+  front-agencia-mix:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.front-agencia-mix.tls=true"
+      - "traefik.http.routers.front-agencia-mix.entrypoints=web,websecure"
+      - "traefik.http.routers.front-agencia-mix.rule=Host(`maquininhas.agenciamixshows.com.br`)"
+      - "traefik.http.routers.front-agencia-mix.tls.certresolver=eder"
+      - "traefik.http.services.front-agencia-mix.loadbalancer.server.port=80"

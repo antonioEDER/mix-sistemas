@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="90" y1="70" x2="1060" y2="830" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#101010"/>
+      <stop offset="1" stop-color="#1E1E1E"/>
+    </linearGradient>
+    <linearGradient id="yellow" x1="194" y1="186" x2="532" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2C94C"/>
+      <stop offset="1" stop-color="#FACC15"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect x="96" y="96" width="1008" height="708" rx="42" fill="#141414" stroke="#242424"/>
+  <rect x="150" y="140" width="226" height="66" rx="22" fill="#E30613"/>
+  <text x="192" y="182" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#FFFFFF">BILHETERIA</text>
+  <g>
+    <rect x="170" y="238" width="388" height="504" rx="40" fill="#171717"/>
+    <rect x="202" y="268" width="324" height="126" rx="20" fill="url(#yellow)"/>
+    <text x="274" y="338" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#111111">PagBank</text>
+    <rect x="202" y="424" width="324" height="276" rx="28" fill="#FFFFFF"/>
+    <rect x="202" y="424" width="324" height="70" rx="28" fill="#E30613"/>
+    <text x="240" y="468" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">Ingressos</text>
+    <text x="236" y="542" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#111111">Pista</text>
+    <text x="422" y="542" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#E30613">R$ 60</text>
+    <text x="236" y="584" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#111111">VIP</text>
+    <text x="430" y="584" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#E30613">R$ 120</text>
+  </g>
+  <rect x="544" y="224" width="416" height="124" rx="28" fill="#FFFFFF"/>
+  <text x="588" y="278" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111111">Emissao automatica</text>
+  <text x="588" y="320" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#4B5563">Comprovante + ingresso na mesma operacao</text>
+  <rect x="544" y="382" width="416" height="258" rx="28" fill="#FFF5F5" stroke="#F3D9DC"/>
+  <text x="588" y="438" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111111">Vantagens</text>
+  <text x="590" y="492" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#111111">- Menos fila na entrada</text>
+  <text x="590" y="534" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#111111">- Controle por evento</text>
+  <text x="590" y="576" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#111111">- Relatorios em tempo real</text>
+  <text x="590" y="618" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#111111">- Bilheteria organizada</text>
+  <rect x="544" y="668" width="290" height="72" rx="24" fill="#FFFFFF" opacity="0.1" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <text x="592" y="714" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#FFFFFF">Ticket impresso</text>
+</svg>

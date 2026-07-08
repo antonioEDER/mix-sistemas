@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="140" y1="50" x2="1260" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF8E1"/>
+      <stop offset="1" stop-color="#FFFDF7"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="120" y1="90" x2="600" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2C400"/>
+      <stop offset="1" stop-color="#FFD94C"/>
+    </linearGradient>
+    <linearGradient id="red" x1="794" y1="148" x2="1194" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E52138"/>
+      <stop offset="1" stop-color="#B71225"/>
+    </linearGradient>
+    <filter id="shadow" x="50" y="50" width="1300" height="780" color-interpolation-filters="sRGB"><feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="#000000" flood-opacity="0.12"/></filter>
+  </defs>
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <circle cx="156" cy="126" r="84" fill="#F2C400" opacity="0.14"/>
+  <circle cx="1260" cy="114" r="72" fill="#C9152B" opacity="0.1"/>
+  <g filter="url(#shadow)">
+    <rect x="78" y="88" width="1244" height="724" rx="34" fill="#FFFFFF"/>
+    <rect x="78" y="88" width="1244" height="88" rx="34" fill="#171717"/>
+    <circle cx="128" cy="132" r="10" fill="#FF6E6E"/>
+    <circle cx="162" cy="132" r="10" fill="#FFD24A"/>
+    <circle cx="196" cy="132" r="10" fill="#44D17A"/>
+    <text x="248" y="141" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#FFFFFF">Painel gerencial . Agencia Mix</text>
+
+    <rect x="118" y="214" width="274" height="150" rx="26" fill="url(#gold)"/>
+    <text x="150" y="266" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#171717">Vendas totais</text>
+    <text x="150" y="328" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#171717">R$ 82.450</text>
+
+    <rect x="418" y="214" width="274" height="150" rx="26" fill="#FFF5F6" stroke="#F4D4D9"/>
+    <text x="450" y="266" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#171717">Ingressos</text>
+    <text x="450" y="328" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#C9152B">1.248</text>
+
+    <rect x="718" y="214" width="274" height="150" rx="26" fill="#F7F9FF" stroke="#D6DEFF"/>
+    <text x="750" y="266" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#171717">Caixas ativos</text>
+    <text x="750" y="328" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#1E4FCE">18</text>
+
+    <rect x="1018" y="214" width="264" height="150" rx="26" fill="#171717"/>
+    <text x="1050" y="266" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">Operadores</text>
+    <text x="1050" y="328" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#FFD94C">43</text>
+
+    <rect x="118" y="394" width="610" height="344" rx="28" fill="#FFFFFF" stroke="#ECECEC"/>
+    <text x="154" y="446" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#171717">Vendas por horario</text>
+    <path d="M164 654L242 598L320 620L398 518L476 560L554 468L632 500L692 430" stroke="#C9152B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M164 688H684" stroke="#E6E6E6" stroke-width="8" stroke-linecap="round"/>
+    <path d="M164 608H684" stroke="#F0F0F0" stroke-width="4" stroke-linecap="round"/>
+    <path d="M164 528H684" stroke="#F0F0F0" stroke-width="4" stroke-linecap="round"/>
+    <path d="M164 448H684" stroke="#F0F0F0" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="398" cy="518" r="9" fill="#F2C400"/>
+    <circle cx="554" cy="468" r="9" fill="#F2C400"/>
+    <circle cx="692" cy="430" r="9" fill="#F2C400"/>
+
+    <rect x="756" y="394" width="526" height="208" rx="28" fill="url(#red)"/>
+    <text x="794" y="450" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#FFFFFF">Formas de pagamento</text>
+    <rect x="794" y="488" width="130" height="62" rx="18" fill="#FFFFFF" opacity="0.18"/>
+    <rect x="946" y="488" width="130" height="62" rx="18" fill="#FFFFFF" opacity="0.18"/>
+    <rect x="1098" y="488" width="130" height="62" rx="18" fill="#FFFFFF" opacity="0.18"/>
+    <text x="846" y="528" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">PIX</text>
+    <text x="978" y="528" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Cartao</text>
+    <text x="1118" y="528" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF">Dinheiro</text>
+
+    <rect x="756" y="628" width="252" height="110" rx="24" fill="#FFF7D9" stroke="#F1E1A0"/>
+    <text x="790" y="678" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#171717">Sangrias</text>
+    <text x="790" y="716" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#171717">R$ 6.300</text>
+
+    <rect x="1030" y="628" width="252" height="110" rx="24" fill="#F7F9FF" stroke="#D6DEFF"/>
+    <text x="1064" y="678" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#171717">Fechamento</text>
+    <text x="1064" y="716" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#1E4FCE">Conferido</text>
+  </g>
+</svg>

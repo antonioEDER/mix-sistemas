@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agência Mix Sistemas | Máquinas PagBank para Eventos</title>
+  <meta name="description" content="Sistema completo para venda em eventos com máquinas PagBank. Reduza filas, elimine fichas de papel, imprima ingressos automaticamente e gerencie tudo em tempo real com a Agência Mix Sistemas." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#E30613" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Agência Mix Sistemas | Tecnologia para acelerar as vendas do seu evento" />
+  <meta property="og:description" content="Venda bebidas, alimentos e ingressos nas máquinas PagBank com impressão automática e gestão completa para eventos." />
+  <meta property="og:image" content="assets/images/hero-maquininha.svg" />
+  <meta property="og:url" content="https://agenciamixsistemas.com.br" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agência Mix Sistemas | Tecnologia para Eventos" />
+  <meta name="twitter:description" content="Sistema premium para vendas em eventos com PagBank, impressão automática e gestão completa." />
+  <meta name="twitter:image" content="assets/images/hero-maquininha.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon-mix-sistemas.svg" />
+  <link rel="preload" as="image" href="assets/images/logo-mix-sistemas.svg" />
+  <link rel="preload" as="image" href="assets/images/hero-maquininha.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mix: {
+              red: '#E30613',
+              dark: '#111111',
+              line: '#ECECEC',
+              soft: '#F8F8F8'
+            }
+          },
+          boxShadow: {
+            soft: '0 20px 60px rgba(17,17,17,0.08)',
+            float: '0 28px 80px rgba(17,17,17,0.14)',
+            glow: '0 18px 70px rgba(227,6,19,0.18)'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #111111;
+      background: #ffffff;
+      overflow-x: hidden;
+    }
+    .bg-grid-soft {
+      background-image:
+        linear-gradient(rgba(17, 17, 17, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17, 17, 17, 0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .orb {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px) scale(0.985);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .delay-1 { transition-delay: 100ms; }
+    .delay-2 { transition-delay: 180ms; }
+    .delay-3 { transition-delay: 260ms; }
+    .float-chip { animation: float 5s ease-in-out infinite; }
+    .float-chip:nth-child(2) { animation-delay: .3s; }
+    .float-chip:nth-child(3) { animation-delay: .6s; }
+    .float-chip:nth-child(4) { animation-delay: .9s; }
+    .float-chip:nth-child(5) { animation-delay: 1.2s; }
+    .float-chip:nth-child(6) { animation-delay: 1.5s; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .ripple { position: absolute; border-radius: 9999px; transform: scale(0); animation: ripple 600ms linear; background: rgba(255,255,255,0.55); pointer-events: none; }
+    @keyframes ripple { to { transform: scale(4); opacity: 0; } }
+    .gallery-track { transition: transform 450ms cubic-bezier(.22,1,.36,1); }
+    .faq-content { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 280ms ease; }
+    .faq-item[data-open="true"] .faq-content { grid-template-rows: 1fr; }
+    .faq-item[data-open="true"] .faq-plus { transform: rotate(45deg); }
+    .faq-plus { transition: transform 240ms ease; }
+    .mask-bottom::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 -70px 120px rgba(17,17,17,0.12);
+      pointer-events: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal, .gallery-track, .faq-content, .faq-plus, .float-chip { transition: none !important; animation: none !important; }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Agência Mix Sistemas",
+      "url": "https://agenciamixsistemas.com.br",
+      "logo": "https://agenciamixsistemas.com.br/assets/images/logo-mix-sistemas.svg",
+      "description": "Sistema completo para venda em eventos com máquinas PagBank, impressão automática de ingressos e fichas, relatórios em tempo real e gestão operacional.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "telephone": "+55-00-0000-0000",
+        "email": "contato@agenciamix.com.br",
+        "availableLanguage": "Portuguese"
+      },
+      "sameAs": [
+        "https://instagram.com/agenciamixsistemas"
+      ]
+    }
+  </script>
+</head>
+<body class="selection:bg-mix-red selection:text-white">
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-mix-dark focus:px-4 focus:py-2 focus:text-white">Pular para o conteúdo</a>
+
+  <header class="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <a href="#topo" class="flex items-center gap-3" aria-label="Agência Mix Sistemas, ir para o topo">
+        <img src="assets/images/logo-mix-sistemas.svg" alt="Logo Agência Mix Sistemas" class="h-20 w-auto" width="280" height="80" />
+      </a>
+      <nav class="hidden items-center gap-7 text-sm font-medium text-black/70 lg:flex" aria-label="Navegação principal">
+        <a class="transition hover:text-mix-red" href="#beneficios">Benefícios</a>
+        <a class="transition hover:text-mix-red" href="#como-funciona">Como funciona</a>
+        <a class="transition hover:text-mix-red" href="#recursos">Recursos</a>
+        <a class="transition hover:text-mix-red" href="#clientes-exclusivos">Clientes Exclusivos</a>
+        <a class="transition hover:text-mix-red" href="#galeria">Galeria</a>
+        <a class="transition hover:text-mix-red" href="#faq">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="#demonstracao" class="hidden rounded-full border border-black/10 px-4 py-2 text-sm font-semibold text-black transition hover:border-black/20 hover:bg-black/[0.03] md:inline-flex">Ver demonstração</a>
+        <a data-ripple href="#orcamento" class="relative hidden overflow-hidden rounded-full bg-mix-red px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#c90511] sm:inline-flex">Solicitar orçamento</a>
+        <button
+          id="mobileMenuButton"
+          type="button"
+          class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-soft transition hover:border-black/20 hover:bg-black/[0.03] lg:hidden"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="mobileMenu"
+        >
+          <i data-lucide="menu" class="h-5 w-5"></i>
+        </button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="hidden border-t border-black/5 bg-white/95 px-4 py-4 shadow-soft lg:hidden">
+      <nav class="mx-auto flex max-w-7xl flex-col gap-2" aria-label="Navegação mobile">
+        <a class="rounded-2xl px-4 py-3 text-sm font-medium text-black/75 transition hover:bg-black/[0.03] hover:text-mix-red" href="#beneficios">Benefícios</a>
+        <a class="rounded-2xl px-4 py-3 text-sm font-medium text-black/75 transition hover:bg-black/[0.03] hover:text-mix-red" href="#como-funciona">Como funciona</a>
+        <a class="rounded-2xl px-4 py-3 text-sm font-medium text-black/75 transition hover:bg-black/[0.03] hover:text-mix-red" href="#recursos">Recursos</a>
+        <a class="rounded-2xl px-4 py-3 text-sm font-medium text-black/75 transition hover:bg-black/[0.03] hover:text-mix-red" href="#clientes-exclusivos">Clientes Exclusivos</a>
+        <a class="rounded-2xl px-4 py-3 text-sm font-medium text-black/75 transition hover:bg-black/[0.03] hover:text-mix-red" href="#galeria">Galeria</a>
+        <a class="rounded-2xl px-4 py-3 text-sm font-medium text-black/75 transition hover:bg-black/[0.03] hover:text-mix-red" href="#faq">FAQ</a>
+        <div class="mt-2 grid gap-3 sm:grid-cols-2">
+          <a href="#demonstracao" class="inline-flex items-center justify-center rounded-full border border-black/10 px-5 py-3 text-sm font-semibold text-black transition hover:border-black/20 hover:bg-black/[0.03]">Ver demonstração</a>
+          <a data-ripple href="#orcamento" class="relative inline-flex overflow-hidden items-center justify-center rounded-full bg-mix-red px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#c90511]">Solicitar orçamento</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section id="topo" class="relative isolate overflow-hidden bg-grid-soft">
+      <div class="orb left-[-5rem] top-10 h-80 w-80 bg-mix-red/15"></div>
+      <div class="orb right-8 top-32 h-72 w-72 bg-blue-300/15"></div>
+      <div class="orb bottom-8 right-[-4rem] h-64 w-64 bg-yellow-300/20"></div>
+
+      <div class="mx-auto grid min-h-[calc(100svh-77px)] max-w-7xl items-center gap-14 px-4 py-14 sm:px-6 md:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-24">
+        <div class="relative z-10">
+          <div class="reveal inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/85 px-4 py-2 text-sm font-medium text-black/70 shadow-soft">
+            <i data-lucide="sparkles" class="h-4 w-4 text-mix-red"></i>
+            Sistema completo para vendas em eventos com máquinas PagBank
+          </div>
+          <h1 class="reveal delay-1 mt-6 max-w-3xl text-4xl font-semibold tracking-[-0.05em] text-black sm:text-5xl lg:text-7xl lg:leading-[1.02]">
+            Venda mais. Atenda mais rápido.
+            <span class="bg-gradient-to-r from-mix-red via-[#ff5b66] to-black bg-clip-text text-transparent">Transforme seu evento</span>
+            com a Agência Mix Sistemas.
+          </h1>
+          <p class="reveal delay-2 mt-6 max-w-2xl text-lg leading-8 text-black/68 sm:text-xl">
+            Sistema completo para venda de bebidas, alimentos e ingressos diretamente nas máquinas PagBank.
+            Ao finalizar o pagamento, a ficha do bar ou o ingresso é impresso automaticamente junto com o comprovante,
+            reduzindo filas e acelerando o atendimento.
+          </p>
+          <div class="reveal delay-3 mt-8 flex flex-col gap-3 sm:flex-row">
+            <a data-ripple href="#orcamento" class="relative inline-flex overflow-hidden rounded-full bg-mix-red px-7 py-4 text-center text-base font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:bg-[#c90511]">Solicitar Orçamento</a>
+            <a href="#demonstracao" class="inline-flex items-center justify-center gap-2 rounded-full border border-black/10 bg-white px-7 py-4 text-base font-semibold text-black shadow-soft transition hover:-translate-y-0.5 hover:border-black/20 hover:bg-black/[0.02]">
+              <i data-lucide="play-circle" class="h-5 w-5 text-mix-red"></i>
+              Ver Demonstração
+            </a>
+          </div>
+          <div class="reveal delay-3 mt-10 grid gap-4 sm:grid-cols-3">
+            <div class="rounded-3xl border border-black/8 bg-white/85 p-5 shadow-soft">
+              <div class="text-sm font-medium text-black/50">Fluxo</div>
+              <div class="mt-2 text-lg font-semibold">Pagamento + emissão automática</div>
+            </div>
+            <div class="rounded-3xl border border-black/8 bg-white/85 p-5 shadow-soft">
+              <div class="text-sm font-medium text-black/50">Operação</div>
+              <div class="mt-2 text-lg font-semibold">Menos fila e mais vazão</div>
+            </div>
+            <div class="rounded-3xl border border-black/8 bg-white/85 p-5 shadow-soft">
+              <div class="text-sm font-medium text-black/50">Gestão</div>
+              <div class="mt-2 text-lg font-semibold">Controle em tempo real</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative z-10 reveal lg:justify-self-end">
+          <div class="relative mx-auto max-w-[680px] rounded-[2rem] border border-black/8 bg-gradient-to-br from-white to-[#f8f8f8] p-4 shadow-float sm:p-6">
+            <div class="float-chip absolute z-20 -left-4 top-14 hidden rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-semibold text-black shadow-soft md:block">PIX</div>
+            <div class="float-chip absolute z-20 -right-2 top-10 hidden rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-semibold text-black shadow-soft md:block">Crédito</div>
+            <div class="float-chip absolute z-20 -left-6 bottom-40 hidden rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-semibold text-black shadow-soft md:block">Débito</div>
+            <div class="float-chip absolute z-20 right-2 top-40 hidden rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-semibold text-black shadow-soft md:block">Ticket</div>
+            <div class="float-chip absolute z-20 left-8 bottom-10 hidden rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-semibold text-black shadow-soft md:block">Ingresso</div>
+            <div class="float-chip absolute z-20 right-8 bottom-20 hidden rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-semibold text-black shadow-soft md:block">Controle</div>
+            <div class="mask-bottom relative z-10 overflow-hidden rounded-[1.75rem] bg-[#0f0f12] p-3 shadow-soft">
+              <img src="assets/images/hero-maquininha.svg" alt="Homem sorrindo em evento segurando máquina com sistema da Agência Mix e ticket sendo impresso" width="900" height="1200" class="w-full rounded-[1.25rem] object-cover shadow-float transition duration-500 hover:scale-[1.015]" loading="eager" fetchpriority="high" decoding="async" />
+            </div>
+            <div class="glass absolute bottom-8 left-8 z-20 rounded-3xl border border-white/40 px-5 py-4 shadow-soft">
+              <div class="text-xs uppercase tracking-[0.18em] text-black/45">Pagamentos</div>
+              <div class="mt-1 text-lg font-semibold">PIX, Crédito, Débito e Dinheiro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-y border-black/6 bg-[#fafafa]" aria-label="Áreas atendidas">
+      <div class="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-5 text-center text-sm font-semibold text-black/45 sm:grid-cols-3 lg:grid-cols-6 lg:px-8">
+        <div>Eventos</div>
+        <div>Bilheteria</div>
+        <div>Bares</div>
+        <div>PagBank</div>
+        <div>Autoatendimento</div>
+        <div>Dashboard Online</div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft">
+            <i data-lucide="zap" class="h-4 w-4 text-mix-red"></i>
+            Muito mais rapidez para seu evento
+          </span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Tudo desenhado para reduzir filas, acelerar atendimento e simplificar a operação.</h2>
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-black/65">A Agência Mix centraliza venda, impressão automática e gestão operacional em uma experiência moderna no padrão de produto SaaS premium.</p>
+        </div>
+        <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article class="reveal rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-float"><div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red/10 text-mix-red"><i data-lucide="zap" class="h-6 w-6"></i></div><h3 class="mt-5 text-xl font-semibold">Atendimento muito mais rápido</h3><p class="mt-3 text-black/65">Menos etapas no caixa e maior vazão nos horários de pico.</p></article>
+          <article class="reveal delay-1 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-float"><div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red/10 text-mix-red"><i data-lucide="ticket" class="h-6 w-6"></i></div><h3 class="mt-5 text-xl font-semibold">Impressão automática do ingresso</h3><p class="mt-3 text-black/65">O ingresso é emitido junto com o comprovante, sem retrabalho.</p></article>
+          <article class="reveal delay-2 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-float"><div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red/10 text-mix-red"><i data-lucide="beer" class="h-6 w-6"></i></div><h3 class="mt-5 text-xl font-semibold">Impressão automática da ficha do bar</h3><p class="mt-3 text-black/65">Acaba a necessidade de fichas separadas ou controles improvisados.</p></article>
+          <article class="reveal rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-float"><div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red/10 text-mix-red"><i data-lucide="activity" class="h-6 w-6"></i></div><h3 class="mt-5 text-xl font-semibold">Relatórios em tempo real</h3><p class="mt-3 text-black/65">Acompanhe vendas, operadores e recebimentos durante o evento.</p></article>
+          <article class="reveal delay-1 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-float"><div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red/10 text-mix-red"><i data-lucide="credit-card" class="h-6 w-6"></i></div><h3 class="mt-5 text-xl font-semibold">PIX, Crédito, Débito e Dinheiro</h3><p class="mt-3 text-black/65">Receba como o público preferir, com controle unificado no sistema.</p></article>
+          <article class="reveal delay-2 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft transition hover:-translate-y-1 hover:shadow-float"><div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red/10 text-mix-red"><i data-lucide="briefcase" class="h-6 w-6"></i></div><h3 class="mt-5 text-xl font-semibold">Controle completo de caixas</h3><p class="mt-3 text-black/65">Abertura, fechamento, sangrias e controle por operador.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="bg-[#fafafa] py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft">
+            <i data-lucide="git-branch" class="h-4 w-4 text-mix-red"></i>
+            Como funciona
+          </span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Do pagamento à retirada em um fluxo direto, claro e sem erros.</h2>
+        </div>
+        <div class="mt-14 overflow-hidden rounded-[2rem] border border-black/8 bg-white p-6 shadow-soft sm:p-8">
+          <div class="hidden items-center justify-between gap-6 lg:flex">
+            <div class="flex-1 rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-mix-red text-xl font-semibold text-white">1</div><h3 class="text-xl font-semibold">Cliente realiza o pagamento</h3><p class="mt-3 text-black/65">Bebida, alimento ou ingresso direto na máquina.</p></div>
+            <i data-lucide="arrow-right" class="h-6 w-6 text-mix-red"></i>
+            <div class="flex-1 rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-mix-red text-xl font-semibold text-white">2</div><h3 class="text-xl font-semibold">A máquina recebe a confirmação</h3><p class="mt-3 text-black/65">O sistema valida a operação em segundos.</p></div>
+            <i data-lucide="arrow-right" class="h-6 w-6 text-mix-red"></i>
+            <div class="flex-1 rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-mix-red text-xl font-semibold text-white">3</div><h3 class="text-xl font-semibold">Comprovante e ficha são impressos</h3><p class="mt-3 text-black/65">Sem fichas manuais, sem retrabalho e sem ruído operacional.</p></div>
+            <i data-lucide="arrow-right" class="h-6 w-6 text-mix-red"></i>
+            <div class="flex-1 rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-mix-red text-xl font-semibold text-white">4</div><h3 class="text-xl font-semibold">Cliente segue para retirada</h3><p class="mt-3 text-black/65">Sem filas. Sem fichas manuais. Sem erros.</p></div>
+          </div>
+          <div class="grid gap-5 lg:hidden">
+            <div class="rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red font-semibold text-white">1</div><h3 class="text-lg font-semibold">Cliente realiza o pagamento</h3><p class="mt-2 text-black/65">Compra direto na máquina.</p></div>
+            <div class="rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red font-semibold text-white">2</div><h3 class="text-lg font-semibold">A máquina recebe a confirmação</h3><p class="mt-2 text-black/65">Tudo acontece em segundos.</p></div>
+            <div class="rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red font-semibold text-white">3</div><h3 class="text-lg font-semibold">Impressão automática</h3><p class="mt-2 text-black/65">Comprovante + ficha ou ingresso.</p></div>
+            <div class="rounded-3xl border border-black/8 bg-[#fcfcfc] p-6"><div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-mix-red font-semibold text-white">4</div><h3 class="text-lg font-semibold">Cliente segue para retirada</h3><p class="mt-2 text-black/65">Fluxo limpo e organizado.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="recursos" class="py-24 sm:py-28">
+      <div class="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
+        <div class="reveal">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft">
+            <i data-lucide="layout-dashboard" class="h-4 w-4 text-mix-red"></i>
+            Recursos completos
+          </span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Uma plataforma completa para operação, atendimento e gestão do evento.</h2>
+          <div class="mt-8 grid gap-3 sm:grid-cols-2">
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Venda de bebidas</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Venda de alimentos</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Venda de ingressos</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">PIX</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Cartão</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Dinheiro</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Controle de caixa</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Controle de operador</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Controle de sangrias</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Relatórios completos</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Dashboard online</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Estoque</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Produtos</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Histórico de vendas</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Controle por evento</div>
+            <div class="rounded-2xl border border-black/8 bg-white px-4 py-3 text-black/78 shadow-soft">Permissões de usuários</div>
+          </div>
+        </div>
+        <div class="reveal delay-1">
+          <div class="rounded-[2rem] border border-black/8 bg-gradient-to-br from-[#141414] via-[#1b1b1b] to-[#111111] p-4 shadow-float sm:p-6">
+            <img src="assets/images/hero-maquininha.svg" alt="Mockup moderno da máquina com sistema de vendas" width="900" height="1200" class="mx-auto w-full max-w-md rounded-[1.5rem] border border-white/10 object-cover shadow-float transition duration-500 hover:-rotate-1 hover:scale-[1.01]" loading="lazy" decoding="async" />
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-3xl border border-white/10 bg-white/5 p-5 text-white/90 backdrop-blur-sm"><div class="text-sm text-white/55">Operação</div><div class="mt-2 text-lg font-semibold">Fluxo rápido no caixa</div></div>
+              <div class="rounded-3xl border border-white/10 bg-white/5 p-5 text-white/90 backdrop-blur-sm"><div class="text-sm text-white/55">Gestão</div><div class="mt-2 text-lg font-semibold">Controle em tempo real</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="autoatendimento" class="bg-[#fafafa] py-24 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+        <div class="reveal order-2 lg:order-1">
+          <div class="rounded-[2rem] border border-black/8 bg-white p-4 shadow-float sm:p-6">
+            <img src="assets/images/auto-atendimento.png" alt="Ilustração moderna de totens de autoatendimento para eventos" width="1200" height="900" class="w-full rounded-[1.5rem] object-cover" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="reveal delay-1 order-1 lg:order-2">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="monitor-smartphone" class="h-4 w-4 text-mix-red"></i>Totens de Autoatendimento</span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Autoatendimento para escalar a capacidade do seu evento.</h2>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-black/65">Disponibilizamos terminais de autoatendimento para que o próprio público realize suas compras, reduzindo filas e aumentando a capacidade de atendimento do evento.</p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-3xl border border-black/8 bg-white p-5 shadow-soft"><div class="font-semibold">Menos pressão na equipe</div><p class="mt-2 text-sm text-black/60">Distribui o fluxo de compra e melhora o pico de operação.</p></div>
+            <div class="rounded-3xl border border-black/8 bg-white p-5 shadow-soft"><div class="font-semibold">Experiência mais moderna</div><p class="mt-2 text-sm text-black/60">Mais autonomia para o público e processo mais organizado.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="estrutura" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="server" class="h-4 w-4 text-mix-red"></i>Estrutura pronta para grandes eventos</span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Tecnologia, operação e suporte preparados para grandes volumes.</h2>
+        </div>
+        <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article class="reveal rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">50 máquinas disponíveis</h3><p class="mt-3 text-black/65">Estrutura para atender alto volume com estabilidade e rapidez.</p></article>
+          <article class="reveal delay-1 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Equipe de suporte</h3><p class="mt-3 text-black/65">Acompanhamento técnico e operacional do início ao fim.</p></article>
+          <article class="reveal delay-2 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Configuração rápida</h3><p class="mt-3 text-black/65">Equipamentos preparados para operação imediata.</p></article>
+          <article class="reveal rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Sistema em nuvem</h3><p class="mt-3 text-black/65">Visibilidade centralizada com dados em tempo real.</p></article>
+          <article class="reveal delay-1 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Atualizações automáticas</h3><p class="mt-3 text-black/65">Ambiente moderno com evolução contínua da solução.</p></article>
+          <article class="reveal delay-2 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Backup e monitoramento</h3><p class="mt-3 text-black/65">Segurança operacional com acompanhamento constante.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="estatisticas" class="relative overflow-hidden bg-mix-dark py-24 text-white sm:py-28">
+      <div class="orb left-1/2 top-0 h-80 w-80 -translate-x-1/2 bg-mix-red/25"></div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-3xl">
+            <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white/70"><i data-lucide="bar-chart-3" class="h-4 w-4 text-white"></i>Estatísticas</span>
+            <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Números que reforçam capacidade, velocidade e confiabilidade.</h2>
+          </div>
+          <p class="max-w-xl text-lg text-white/65">Estrutura desenhada para operar com alta disponibilidade e grande volume de transações em eventos.</p>
+        </div>
+        <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div class="reveal rounded-[1.75rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm"><div class="text-5xl font-semibold tracking-[-0.05em]" data-counter="50" data-suffix="+">0</div><p class="mt-3 text-white/70">Máquinas disponíveis</p></div>
+          <div class="reveal delay-1 rounded-[1.75rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm"><div class="text-5xl font-semibold tracking-[-0.05em]" data-counter="500" data-suffix="+">0</div><p class="mt-3 text-white/70">Eventos realizados</p></div>
+          <div class="reveal delay-2 rounded-[1.75rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm"><div class="text-5xl font-semibold tracking-[-0.05em]" data-counter="1000000" data-final="1 milhão+">0</div><p class="mt-3 text-white/70">Transações processadas</p></div>
+          <div class="reveal delay-3 rounded-[1.75rem] border border-white/10 bg-white/5 p-7 backdrop-blur-sm"><div class="text-5xl font-semibold tracking-[-0.05em]" data-counter="99.9" data-suffix="%">0</div><p class="mt-3 text-white/70">Disponibilidade</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diferenciais" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="shield-check" class="h-4 w-4 text-mix-red"></i>Diferenciais</span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Uma solução premium pensada para evento de verdade.</h2>
+        </div>
+        <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <article class="reveal rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Elimine fichas de papel</h3><p class="mt-3 text-black/65">Substitua processos manuais por emissão automática integrada ao pagamento.</p></article>
+          <article class="reveal delay-1 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Pagamento instantâneo</h3><p class="mt-3 text-black/65">Recebimento rápido com suporte a múltiplas formas de pagamento.</p></article>
+          <article class="reveal delay-2 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Emissão automática</h3><p class="mt-3 text-black/65">Comprovante, ingresso e ficha no mesmo fluxo operacional.</p></article>
+          <article class="reveal rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Controle financeiro completo</h3><p class="mt-3 text-black/65">Abertura, fechamento, sangria e visão consolidada por evento.</p></article>
+          <article class="reveal delay-1 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Redução de filas</h3><p class="mt-3 text-black/65">Menos atrito no atendimento e mais vazão nos momentos de pico.</p></article>
+          <article class="reveal delay-2 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><h3 class="text-xl font-semibold">Maior produtividade</h3><p class="mt-3 text-black/65">Equipe mais eficiente, operação mais organizada e evento mais lucrativo.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="bg-[#fafafa] py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div class="max-w-3xl">
+            <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="images" class="h-4 w-4 text-mix-red"></i>Galeria</span>
+            <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Cenas que representam a operação moderna da Agência Mix.</h2>
+          </div>
+          <div class="flex items-center gap-3">
+            <button type="button" class="carousel-prev inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-soft transition hover:border-black/20 hover:bg-black/[0.03]" aria-label="Slide anterior"><i data-lucide="arrow-left" class="h-5 w-5"></i></button>
+            <button type="button" class="carousel-next inline-flex h-12 w-12 items-center justify-center rounded-full border border-black/10 bg-white text-black shadow-soft transition hover:border-black/20 hover:bg-black/[0.03]" aria-label="Próximo slide"><i data-lucide="arrow-right" class="h-5 w-5"></i></button>
+          </div>
+        </div>
+        <div class="reveal mt-12 overflow-hidden rounded-[2rem] border border-black/8 bg-white p-4 shadow-soft sm:p-6">
+          <div class="gallery-track flex" id="galleryTrack">
+            <article class="min-w-full px-1">
+              <div class="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+                <img src="assets/images/hero-maquininha.svg" alt="Pessoa utilizando a máquina em um evento" width="900" height="1200" class="h-full min-h-[420px] w-full rounded-[1.5rem] object-cover shadow-soft" loading="lazy" decoding="async" />
+                <div class="grid gap-6">
+                  <img src="assets/images/auto-atendimento.png" alt="Evento com operação moderna de vendas" width="1200" height="900" class="h-full min-h-[198px] w-full rounded-[1.5rem] object-cover shadow-soft" loading="lazy" decoding="async" />
+                  <!-- <div class="grid gap-6 sm:grid-cols-2">
+                    <img src="assets/images/totem-autoatendimento.svg" alt="Bar integrado ao sistema da Agência Mix" width="1200" height="900" class="h-full min-h-[198px] w-full rounded-[1.5rem] object-cover shadow-soft" loading="lazy" decoding="async" />
+                    <img src="assets/images/galeria-bilheteria.svg" alt="Bilheteria com emissão automática de ticket" width="1200" height="900" class="h-full min-h-[198px] w-full rounded-[1.5rem] object-cover shadow-soft" loading="lazy" decoding="async" />
+                  </div> -->
+                </div>
+              </div>
+            </article>
+            <article class="min-w-full px-1">
+              <div class="grid gap-6 lg:grid-cols-2">
+                <img src="assets/images/totem-autoatendimento.svg" alt="Totem de autoatendimento" width="1200" height="900" class="h-full  w-full rounded-[1.5rem] object-cover shadow-soft" loading="lazy" decoding="async" />
+                <img src="assets/images/checkin.png" alt="Dashboard online para gestão do evento" width="1400" height="900" class="h-full  w-full rounded-[1.5rem] object-cover shadow-soft" loading="lazy" decoding="async" />
+              </div>
+            </article>
+          </div>
+          <div class="mt-6 flex items-center justify-center gap-2" id="galleryDots" aria-label="Indicadores do carrossel">
+            <button type="button" class="h-2.5 w-8 rounded-full bg-mix-red" data-slide="0" aria-label="Ir para slide 1"></button>
+            <button type="button" class="h-2.5 w-2.5 rounded-full bg-black/15" data-slide="1" aria-label="Ir para slide 2"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clientes-exclusivos" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="crown" class="h-4 w-4 text-mix-red"></i>Clientes Exclusivos</span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Eventos e marcas que confiam na operação da Agência Mix.</h2>
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-black/65">Conheça alguns clientes e parceiros atendidos com estrutura, tecnologia e experiência voltadas para eventos de alto impacto.</p>
+        </div>
+
+        <div class="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <a href="https://www.instagram.com/expoagrorm/" target="_blank" rel="noopener noreferrer" class="reveal group overflow-hidden rounded-[1.75rem] border border-black/8 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-float">
+            <div class="relative">
+              <img src="assets/images/cliente-1.jpg" alt="Cliente Expoagro" width="1200" height="1200" class="h-80 w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 text-white">
+                <div class="text-2xl font-semibold">Expoagro</div>
+                <div class="mt-2 text-sm text-white/80">@expoagrorm</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/expovelpvh/" target="_blank" rel="noopener noreferrer" class="reveal delay-1 group overflow-hidden rounded-[1.75rem] border border-black/8 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-float">
+            <div class="relative">
+              <img src="assets/images/cliente-2.jpg" alt="Cliente Expovel" width="1200" height="1200" class="h-80 w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 text-white">
+                <div class="text-2xl font-semibold">Expovel</div>
+                <div class="mt-2 text-sm text-white/80">@expovelpvh</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/elpatroncamarote/" target="_blank" rel="noopener noreferrer" class="reveal delay-2 group overflow-hidden rounded-[1.75rem] border border-black/8 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-float">
+            <div class="relative">
+              <img src="assets/images/cliente-3.jpg" alt="Cliente Elpatron" width="1200" height="1200" class="h-80 w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 text-white">
+                <div class="text-2xl font-semibold">Elpatron</div>
+                <div class="mt-2 text-sm text-white/80">@elpatroncamarote</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/talisma21/" target="_blank" rel="noopener noreferrer" class="reveal group overflow-hidden rounded-[1.75rem] border border-black/8 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-float">
+            <div class="relative">
+              <img src="assets/images/cliente-4.jpg" alt="Cliente Talismã21" width="1200" height="1200" class="h-80 w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 text-white">
+                <div class="text-2xl font-semibold">Talismã21</div>
+                <div class="mt-2 text-sm text-white/80">@talisma21</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/agenciamix/" target="_blank" rel="noopener noreferrer" class="reveal delay-1 group overflow-hidden rounded-[1.75rem] border border-black/8 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-float">
+            <div class="relative">
+              <img src="assets/images/cliente-5.jpg" alt="Cliente Agência Mix" width="1200" height="1200" class="h-80 w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 text-white">
+                <div class="text-2xl font-semibold">Agência Mix</div>
+                <div class="mt-2 text-sm text-white/80">@agenciamix</div>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://www.instagram.com/piseirouniversitariooficial/" target="_blank" rel="noopener noreferrer" class="reveal delay-2 group overflow-hidden rounded-[1.75rem] border border-black/8 bg-white shadow-soft transition hover:-translate-y-1 hover:shadow-float">
+            <div class="relative">
+              <img src="assets/images/cliente-6.jpg" alt="Cliente Piseiro Universitario" width="1200" height="1200" class="h-80 w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" decoding="async" />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6 text-white">
+                <div class="text-2xl font-semibold">Piseiro Universitario</div>
+                <div class="mt-2 text-sm text-white/80">@piseirouniversitariooficial</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="depoimentos" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="message-square-quote" class="h-4 w-4 text-mix-red"></i>Depoimentos</span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Rapidez, organização e fim das filas percebidos na prática.</h2>
+        </div>
+        <div class="mt-12 grid gap-5 lg:grid-cols-3">
+          <article class="reveal rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><div class="flex items-center gap-1 text-mix-red"><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i></div><p class="mt-5 text-lg leading-8 text-black/75">“A operação ficou muito mais rápida. O público comprava e já saía com a ficha na mão.”</p><div class="mt-6 text-sm font-semibold text-black/60">Produção de rodeio</div></article>
+          <article class="reveal delay-1 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><div class="flex items-center gap-1 text-mix-red"><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i></div><p class="mt-5 text-lg leading-8 text-black/75">“Ter o controle de caixas, operadores e formas de pagamento em tempo real trouxe uma organização que antes não existia.”</p><div class="mt-6 text-sm font-semibold text-black/60">Organização de feira</div></article>
+          <article class="reveal delay-2 rounded-[1.75rem] border border-black/8 bg-white p-7 shadow-soft"><div class="flex items-center gap-1 text-mix-red"><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i><i data-lucide="star" class="h-4 w-4 fill-current"></i></div><p class="mt-5 text-lg leading-8 text-black/75">“A emissão automática do ingresso agilizou muito a entrada e diminuiu problemas operacionais.”</p><div class="mt-6 text-sm font-semibold text-black/60">Evento corporativo</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="demonstracao" class="bg-[#fafafa] py-24 sm:py-28">
+      <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
+        <div class="reveal min-w-0">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="play-square" class="h-4 w-4 text-mix-red"></i>Ver demonstração</span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Demonstração</h2>
+          <p class="mt-6 max-w-xl text-lg leading-8 text-black/65">Veja o fluxo de venda, a emissão automática do ticket e a experiência do operador na maquininha.</p>
+          <div class="mt-8 rounded-[1.75rem] border border-black/8 bg-white p-6 shadow-soft">
+            <p class="break-words text-sm leading-7 text-black/65">Link do vídeo do YouTube <strong class="break-all">https://youtu.be/u7SC1LeGDRM</strong>.</p>
+          </div>
+        </div>
+        <div class="reveal delay-1 min-w-0">
+          <div class="overflow-hidden rounded-[2rem] border border-black/8 bg-black shadow-float">
+            <div class="aspect-video">
+              <iframe class="block h-full w-full" src="https://www.youtube.com/embed/u7SC1LeGDRM?si=CqwX45qQ_76Pfn-m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-24 sm:py-28">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center">
+          <span class="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-soft"><i data-lucide="help-circle" class="h-4 w-4 text-mix-red"></i>FAQ</span>
+          <h2 class="mt-5 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Perguntas frequentes</h2>
+        </div>
+        <div class="mt-12 grid gap-4">
+          <article class="faq-item reveal rounded-[1.5rem] border border-black/8 bg-white shadow-soft" data-open="true"><button type="button" class="flex w-full cursor-default items-center justify-between gap-4 px-6 py-5 text-left font-semibold" aria-expanded="true" disabled><span>Aceita PIX?</span><i data-lucide="plus" class="faq-plus h-5 w-5 text-mix-red"></i></button><div class="faq-content"><div class="overflow-hidden px-6 pb-5 text-black/65">Sim. O sistema trabalha com PIX, cartão de crédito, cartão de débito e dinheiro.</div></div></article>
+          <article class="faq-item reveal delay-1 rounded-[1.5rem] border border-black/8 bg-white shadow-soft" data-open="true"><button type="button" class="flex w-full cursor-default items-center justify-between gap-4 px-6 py-5 text-left font-semibold" aria-expanded="true" disabled><span>Funciona offline?</span><i data-lucide="plus" class="faq-plus h-5 w-5 text-mix-red"></i></button><div class="faq-content"><div class="overflow-hidden px-6 pb-5 text-black/65">A operação depende da estrutura definida para o evento. A recomendação é alinhar a conectividade ideal com a equipe.</div></div></article>
+          <article class="faq-item reveal delay-2 rounded-[1.5rem] border border-black/8 bg-white shadow-soft" data-open="true"><button type="button" class="flex w-full cursor-default items-center justify-between gap-4 px-6 py-5 text-left font-semibold" aria-expanded="true" disabled><span>Emite ingresso?</span><i data-lucide="plus" class="faq-plus h-5 w-5 text-mix-red"></i></button><div class="faq-content"><div class="overflow-hidden px-6 pb-5 text-black/65">Sim. O ingresso pode ser emitido automaticamente junto ao comprovante após a confirmação do pagamento.</div></div></article>
+          <article class="faq-item reveal rounded-[1.5rem] border border-black/8 bg-white shadow-soft" data-open="true"><button type="button" class="flex w-full cursor-default items-center justify-between gap-4 px-6 py-5 text-left font-semibold" aria-expanded="true" disabled><span>Imprime ficha do bar?</span><i data-lucide="plus" class="faq-plus h-5 w-5 text-mix-red"></i></button><div class="faq-content"><div class="overflow-hidden px-6 pb-5 text-black/65">Sim. A ficha do bar é emitida automaticamente no mesmo fluxo do pagamento, sem impressão separada.</div></div></article>
+          <article class="faq-item reveal delay-1 rounded-[1.5rem] border border-black/8 bg-white shadow-soft" data-open="true"><button type="button" class="flex w-full cursor-default items-center justify-between gap-4 px-6 py-5 text-left font-semibold" aria-expanded="true" disabled><span>Tem suporte?</span><i data-lucide="plus" class="faq-plus h-5 w-5 text-mix-red"></i></button><div class="faq-content"><div class="overflow-hidden px-6 pb-5 text-black/65">Sim. A Agência Mix oferece suporte e acompanhamento para garantir estabilidade e fluidez operacional.</div></div></article>
+          <article class="faq-item reveal delay-2 rounded-[1.5rem] border border-black/8 bg-white shadow-soft" data-open="true"><button type="button" class="flex w-full cursor-default items-center justify-between gap-4 px-6 py-5 text-left font-semibold" aria-expanded="true" disabled><span>Posso alugar as máquinas?</span><i data-lucide="plus" class="faq-plus h-5 w-5 text-mix-red"></i></button><div class="faq-content"><div class="overflow-hidden px-6 pb-5 text-black/65">Sim. A estrutura inclui locação de máquinas preparadas para operação em eventos de diferentes portes.</div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="orcamento" class="pb-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-[2.25rem] bg-mix-red px-6 py-16 text-white shadow-glow sm:px-10 lg:px-16">
+          <div class="orb -right-10 -top-10 h-56 w-56 bg-white/15"></div>
+          <div class="orb bottom-0 left-0 h-72 w-72 bg-black/15"></div>
+          <div class="relative z-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div class="reveal">
+              <span class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white/85 backdrop-blur-sm"><i data-lucide="rocket" class="h-4 w-4"></i>Atendimento</span>
+              <h2 class="mt-5 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Pronto para acelerar as vendas do seu evento?</h2>
+              <p class="mt-6 max-w-2xl text-lg leading-8 text-white/80">Solicite um orçamento sem compromisso e conheça a solução completa da Agência Mix Sistemas para bares, bilheteria e controle operacional em máquinas PagBank.</p>
+            </div>
+            <div class="reveal delay-1 flex flex-col gap-4 rounded-[1.75rem] border border-white/18 bg-white/10 p-6 backdrop-blur-md">
+              <a data-ripple href="https://wa.me/5569984793758" target="_blank" rel="noopener noreferrer" class="relative inline-flex overflow-hidden items-center justify-center rounded-full bg-white px-7 py-4 text-base font-semibold text-mix-red shadow-soft transition hover:-translate-y-0.5">Falar com atendente pelo WhatsApp</a>
+              <div class="grid gap-3 text-sm text-white/85 sm:grid-cols-2">
+                <div class="rounded-2xl border border-white/12 bg-white/10 p-4">Eder: 69 98479-3758</div>
+                <div class="rounded-2xl border border-white/12 bg-white/10 p-4">Wandinho: 69 98412-7339</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a
+    href="https://wa.me/5569984793758"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Falar com Eder pelo WhatsApp"
+    class="fixed bottom-5 right-5 z-[90] inline-flex items-center gap-3 rounded-full bg-[#25D366] px-5 py-3 text-sm font-semibold text-white shadow-[0_18px_45px_rgba(37,211,102,0.35)] transition hover:-translate-y-1 hover:bg-[#20ba59] focus:outline-none focus:ring-4 focus:ring-[#25D366]/30"
+  >
+    <i data-lucide="message-circle-more" class="h-5 w-5"></i>
+    <span class="hidden sm:inline">WhatsApp - Vendas</span>
+  </a>
+
+  <footer class="border-t border-black/8 bg-white py-10">
+    <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+      <div>
+        <img src="assets/images/logo-mix-sistemas.svg" alt="Agência Mix Sistemas" class="h-20 w-auto" width="280" height="80" loading="lazy" decoding="async" />
+        <p class="mt-4 max-w-md text-black/60">Agência Mix Sistemas<br />Tecnologia para Eventos</p>
+      </div>
+      <div class="grid gap-4 text-sm text-black/65 sm:grid-cols-2">
+        <a href="tel:+5569984793758" class="transition hover:text-mix-red">Telefone: 69 98479-3758 (Eder)</a>
+        <a href="tel:+5569984127339" class="transition hover:text-mix-red">Telefone: 69 98412-7339 (Wandinho)</a>
+        <a href="https://instagram.com/agenciamix" target="_blank" rel="noopener noreferrer" class="transition hover:text-mix-red">Instagram: @agenciamixsistemas</a>
+        <a href="mailto:ederantonio@ederantonio.com.br" class="transition hover:text-mix-red">E-mail: ederantonio@ederantonio.com.br</a>
+      </div>
+    </div>
+    <div class="mx-auto mt-8 max-w-7xl px-4 text-sm text-black/45 sm:px-6 lg:px-8">© 2026 Agência Mix Sistemas. Todos os direitos reservados.</div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        const isOpen = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
+
+    document.querySelectorAll('[data-ripple]').forEach((button) => {
+      button.addEventListener('click', function (event) {
+        const circle = document.createElement('span');
+        const diameter = Math.max(this.clientWidth, this.clientHeight);
+        const radius = diameter / 2;
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${event.clientX - this.getBoundingClientRect().left - radius}px`;
+        circle.style.top = `${event.clientY - this.getBoundingClientRect().top - radius}px`;
+        circle.className = 'ripple';
+        const existing = this.querySelector('.ripple');
+        if (existing) existing.remove();
+        this.appendChild(circle);
+      });
+    });
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const rawValue = parseFloat(el.dataset.counter || '0');
+        const suffix = el.dataset.suffix || '';
+        const finalText = el.dataset.final || '';
+        const hasDecimal = String(el.dataset.counter || '').includes('.');
+        const start = performance.now();
+        const duration = 1600;
+
+        const animate = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = rawValue * eased;
+          if (finalText) {
+            el.textContent = progress < 1 ? Math.round(value).toLocaleString('pt-BR') : finalText;
+          } else if (hasDecimal) {
+            el.textContent = `${value.toFixed(1).replace('.', ',')}${suffix}`;
+          } else {
+            el.textContent = `${Math.round(value).toLocaleString('pt-BR')}${suffix}`;
+          }
+          if (progress < 1) requestAnimationFrame(animate);
+        };
+
+        requestAnimationFrame(animate);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.45 });
+    document.querySelectorAll('[data-counter]').forEach((counter) => counterObserver.observe(counter));
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((item) => {
+      const button = item.querySelector('button');
+      button.addEventListener('click', () => {
+        const open = item.dataset.open === 'true';
+        faqItems.forEach((other) => {
+          other.dataset.open = 'false';
+          other.querySelector('button').setAttribute('aria-expanded', 'false');
+        });
+        item.dataset.open = String(!open);
+        button.setAttribute('aria-expanded', String(!open));
+      });
+    });
+
+    const track = document.getElementById('galleryTrack');
+    const dots = document.querySelectorAll('#galleryDots [data-slide]');
+    const prev = document.querySelector('.carousel-prev');
+    const next = document.querySelector('.carousel-next');
+    let currentSlide = 0;
+    const totalSlides = dots.length;
+    let autoplay;
+
+    function updateCarousel(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, idx) => {
+        dot.className = idx === currentSlide ? 'h-2.5 w-8 rounded-full bg-mix-red' : 'h-2.5 w-2.5 rounded-full bg-black/15';
+      });
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplay = window.setInterval(() => updateCarousel(currentSlide + 1), 5000);
+    }
+
+    function stopAutoplay() {
+      if (autoplay) window.clearInterval(autoplay);
+    }
+
+    prev.addEventListener('click', () => { updateCarousel(currentSlide - 1); startAutoplay(); });
+    next.addEventListener('click', () => { updateCarousel(currentSlide + 1); startAutoplay(); });
+    dots.forEach((dot) => dot.addEventListener('click', () => { updateCarousel(Number(dot.dataset.slide)); startAutoplay(); }));
+    updateCarousel(0);
+    startAutoplay();
+  </script>
+</body>
+</html>
