@@ -18,6 +18,6 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.routers.front-agencia-mix.tls=true"
       - "traefik.http.routers.front-agencia-mix.entrypoints=web,websecure"
-      - "traefik.http.routers.front-agencia-mix.rule=Host(`maquininhas.agenciamixshows.com.br`)"
+      - "traefik.http.routers.front-agencia-mix.rule=Host(`comercial.agenciamixshows.com.br`)"
       - "traefik.http.routers.front-agencia-mix.tls.certresolver=eder"
       - "traefik.http.services.front-agencia-mix.loadbalancer.server.port=80"
