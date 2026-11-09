@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../mix-ssitemas-midias"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "mix-sistemas"
+	}
+}
